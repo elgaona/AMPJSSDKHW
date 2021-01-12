@@ -1,0 +1,175 @@
+<html>
+<script type="text/javascript">
+
+    /* All JS SDK functions can be found here: https://amplitude.github.io/Amplitude-JavaScript/Amplitude
+    
+    TASK: Include the JS SDK code snippet. Find it in the Deverlopers Center between the two "script" tags.
+    
+    */ 
+    
+</script>
+
+    <header>
+        <title>JS SDK EXAMPLE</title>
+    </header>
+
+    <body>
+        <h1>Log events via the JS SDK!</h1>
+        
+        <p id="currentUser">There is no user logged in! This program logs events as Anonymous when there is no user logged in.</p>
+        
+        <p><label for="fname">Full name:</label><br>
+        <input type="text" id="UserID" name="fname"/></p>
+            
+        <p><label>Favorite food:</label><br>
+            <input type="text" id="favfood"/></p>
+        
+        <p><label>Age:</label><br>
+            <input type="text" id="age"/></p>
+        
+    
+         <p><label>Color of your current shirt:</label><br>
+            <input type="text" id="color"/></p>
+    
+        <p><label>Day of the week:</label><br>
+            <input type="text" id="day"/></p>
+    
+        <button onclick="setUserID();userProps();">Log In</button>
+    
+        <p><button onclick="logevent()">Log event 1</button>
+        <button onclick="logevent2()">Log event 2</button>
+        <button onclick="logevent3()">Log event 3</button>
+        <p id="event">No events have been logged...</p></p>
+    
+        <p>
+            <label for="cars">Purchase an item:</label>
+            <select name="item" id="items">
+                <option value="socks">Socks</option>
+                <option value="Playstation 5">Playstation 5</option>
+                <option value="bananas">Banana</option>
+                <option value="earrings">Earrings</option>
+            </select>
+            <br><br>
+            <label for="amount">Quantity:</label>
+            <select name="quantities" id="quantity">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+            </select>
+            <p id="purchase">No items have been purchased... :(</p>
+            <button onclick="item()">Purchase</button>
+        </p>    
+    
+        <p>
+            <button onclick="logOut()">Log Out</button>
+        </p> 
+    </body>
+    
+    <script>
+    
+    function setUserID() {
+        var user = document.getElementById("UserID").value; //Save the full name of the user which will end up being their User ID in Amplitude
+        
+        if(user == "") {
+            document.getElementById("currentUser").innerHTML = "There is no user logged in! This program logs events as Anonymous when there is no user logged in."; //If the name field is empty then there is no point in saving the User ID. Events will be tracked anonymously until someone logs in
+        }
+        else {
+            document.getElementById("currentUser").innerHTML = user + " is logged in and events will be recorded under this user!";
+            //Here the "full name" is not null which means we want to set that full name as the User ID in Amplitude
+            
+            //TASK: Set the User ID of the user into Amplitude using setUserId
+            //TASK: Log a sign in event using logevent()
+        }
+    }
+        
+    function userProps() {
+        
+        var food = document.getElementById("favfood").value; //Saves the users favorite food in variable food
+        
+        var age = document.getElementById("age").value; //Saves the users age in variable age
+        
+        var user = document.getElementById("UserID").value; //Saves the users full name in variable user
+        
+        //TASK: Use setUserProperties() to set the user properties, food, age, user
+    }
+        
+    function logevent() {
+        
+        var user = document.getElementById("UserID").value; //Grab the value of the User ID
+        var colorShirt = document.getElementById("color").value; //Grab the value of color
+        var day = document.getElementById("day").value; //Grab the day
+        
+        document.getElementById("event").innerHTML = user + " logged Event #1!"; //changes some text on the webpage to say which event has been logged and by who
+        
+        //TASK: Log the event using logEvent() along with the event properties colorshirt and day
+    }
+    function logevent2() {
+        
+        var user = document.getElementById("UserID").value; //Grab the value of the User ID
+        var colorShirt = document.getElementById("color").value;
+        var day = document.getElementById("day").value;
+        
+        document.getElementById("event").innerHTML = user + " logged Event #2!"
+        
+        //TASK: Log the event using logEvent() along with the event properties colorshirt and day
+    }
+    function logevent3() {
+        
+        var user = document.getElementById("UserID").value; //Grab the value of the User ID
+        var colorShirt = document.getElementById("color").value;
+        var day = document.getElementById("day").value;
+        
+        document.getElementById("event").innerHTML = user + " logged Event #3!"
+        
+        //TASK: Log the event using logEvent() along with the event properties colorshirt and day
+    }
+        
+    function item() {
+        
+        var quantity = document.getElementById("quantity").value;
+        var x = parseInt(quantity); //Change the data from string to integer
+        
+        var product = document.getElementById("items").value;
+        
+        if(product == "socks") {
+            document.getElementById("purchase").innerHTML = "Thank you for purchasing " + x + " " + product + "! :D";
+            
+        //TASK: Send in a revenue event using logRevenueV2(). Use variable x since the variable is grabbing the quantity the user is selecting as an integer.
+        }
+        else if(product == "Playstation 5") {
+            document.getElementById("purchase").innerHTML = "Thank you for purchasing " + x + " " + product + "! :D";
+            
+        //TASK: Send in a revenue event using logRevenueV2(). Use variable x since the variable is grabbing the quantity the user is selecting as an integer.
+        }
+        else if(product == "bananas") {
+            document.getElementById("purchase").innerHTML = "Thank you for purchasing " + x + " " + product + "! :D";
+            console.log(product)
+            
+        //TASK: Send in a revenue event using logRevenueV2(). Use variable x since the variable is grabbing the quantity the user is selecting as an integer.
+        }
+        else if(product == "earrings") {
+            document.getElementById("purchase").innerHTML = "Thank you for purchasing " + x + " " + product + "! :D";
+            
+        //TASK: Send in a revenue event using logRevenueV2(). Use variable x since the variable is grabbing the quantity the user is selecting as an integer.
+        }
+    }
+        
+    function logOut() {
+        //TASK: Log a sign out event here using logevent()
+        
+        document.getElementById("currentUser").innerHTML = "There is no user logged in! This program logs events as Anonymous when there is no user logged in.";
+        document.getElementById("event").innerHTML = "Anonymous user will start logging events."
+        document.getElementById("UserID").value = ""; //Reset the full name field
+        document.getElementById("favfood").value = ""; //Reset the favorite food field
+        document.getElementById("age").value = ""; //Reset the age field
+        document.getElementById("color").value = "";
+        document.getElementById("day").value = "";
+        document.getElementById("purchase").innerHTML = "No items have been purchased... :(";
+    
+        //TASK: Remove the user id here using setUserId() HINT: null is the value 
+        //TASK: Regenerate the Device ID here to track users anonymously after they log out using regenerateDeviceId()
+    }
+    </script>
+    
+</html>
